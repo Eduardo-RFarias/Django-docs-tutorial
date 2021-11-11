@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!-- Engnet consultoria 2021 -->
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Polls results page</title>
+  </head>
+  <body>
+    <h1>{{ question.question_text }}</h1>
+
+    <ul>
+      {% for choice in question.choices %}
+      <li>
+        {{ choice.choice_text }} -- {{ choice.votes }} vote{{
+        choice.votes|pluralize }}
+      </li>
+      {% endfor %}
+    </ul>
+
+    <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+  </body>
+</html>
