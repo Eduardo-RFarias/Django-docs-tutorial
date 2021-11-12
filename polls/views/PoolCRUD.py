@@ -2,7 +2,7 @@ from django.utils import timezone
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from .models import Question, Choice
+from ..models import Question, Choice
 
 
 def index(request):
