@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Python: Django",
+      "name": "Run Python",
       "type": "python",
       "request": "launch",
       "program": "${workspaceFolder}\\manage.py",
@@ -13,7 +13,7 @@
       "django": true
     },
     {
-      "name": "Docker: Python - Django",
+      "name": "Run Docker",
       "type": "docker",
       "request": "launch",
       "preLaunchTask": "docker-run: debug",
