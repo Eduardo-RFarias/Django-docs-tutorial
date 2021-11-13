@@ -35,9 +35,5 @@ USER appuser
 # collect static files
 RUN python manage.py collectstatic --noinput
 
-# Creating superuser
-RUN python manage.py migrate \
-    && python manage.py shell < scripts/create_superuser.py
-
 # run gunicorn
 CMD gunicorn admin.wsgi:application --bind 0.0.0.0:$PORT
