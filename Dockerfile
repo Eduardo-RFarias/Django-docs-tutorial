@@ -1,18 +1,13 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3.8-alpine
 
-EXPOSE 8000
-
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
 
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
-# Turns off debug
-ENV DEBUG 0
-
-# install psycopg2
+# Install psycopg2
 RUN apk update \
     && apk add --virtual build-deps gcc python3-dev musl-dev \
     && apk add postgresql-dev \
@@ -22,9 +17,11 @@ RUN apk update \
 # Install PipEnv
 RUN pip install pipenv
 
+# Copying the project to /app and setting the WORKDIR
 WORKDIR /app
 COPY . /app
 
+# Install dependencies
 RUN pipenv install --system
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
@@ -32,8 +29,8 @@ RUN pipenv install --system
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
 
-# collect static files
+# Collect static files
 RUN python manage.py collectstatic --noinput
 
-# run gunicorn
+# Run gunicorn
 CMD gunicorn admin.wsgi:application --bind 0.0.0.0:$PORT
