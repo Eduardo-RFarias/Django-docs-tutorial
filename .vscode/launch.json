@@ -11,21 +11,6 @@
       "program": "${workspaceFolder}\\manage.py",
       "args": ["runserver"],
       "django": true
-    },
-    {
-      "name": "Run Docker",
-      "type": "docker",
-      "request": "launch",
-      "preLaunchTask": "docker-run: debug",
-      "python": {
-        "pathMappings": [
-          {
-            "localRoot": "${workspaceFolder}",
-            "remoteRoot": "/app"
-          }
-        ],
-        "projectType": "django"
-      }
     }
   ]
 }
